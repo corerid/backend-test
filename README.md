@@ -1,3 +1,5 @@
+# Transaction monitoring - Ethereum JSON-RPC
+Golang system that monitors incoming and outgoing transactions of specified Ethereum addresses and store the transaction into database.
 
 ## How to run program
 **Option #1: Run on your local**

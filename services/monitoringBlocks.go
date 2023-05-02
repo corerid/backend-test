@@ -85,7 +85,6 @@ type getBlockByNumberResponse struct {
 }
 
 func (s Service) MonitorBlockEthereum(specifiedAddress string) {
-	//var runningBlockNumber *big.Int
 	jsonRPCServer := s.Config.JSONRPCServer
 
 	runningBlockNumber, err := getLatestBlock(jsonRPCServer, s.Client)
@@ -93,7 +92,6 @@ func (s Service) MonitorBlockEthereum(specifiedAddress string) {
 		log.Fatal(err)
 	}
 
-	//runningBlockNumber = latestBlock
 	for {
 		latestBlock, err := getLatestBlock(jsonRPCServer, s.Client)
 		if err != nil {
@@ -146,14 +144,12 @@ func (s Service) MonitorBlockEthereum(specifiedAddress string) {
 }
 
 func getLatestBlock(server string, client http.Client) (*big.Int, error) {
-	//req := httpX.NewRequest(server, "application/json")
 	reqBody, err := prepareBodyForGetLatestBlockNumber()
 	if err != nil {
 		return nil, err
 	}
 	req := http.NewRequest(reqBody, "application/json")
 	response, err := client.Send(http.MethodPost, server, req)
-	//response, err := client.Post(reqBody)
 	if err != nil {
 		return nil, err
 	}
@@ -173,8 +169,6 @@ func getLatestBlock(server string, client http.Client) (*big.Int, error) {
 }
 
 func getBlockByNumber(server string, client http.Client, blockNumber *big.Int) (getBlockByNumberResponse, error) {
-	//req := httpX.NewRequest(server, "application/json")
-
 	blockNumberHex, err := utils.BigIntToHex(blockNumber)
 	if err != nil {
 		return getBlockByNumberResponse{}, err
@@ -190,7 +184,6 @@ func getBlockByNumber(server string, client http.Client, blockNumber *big.Int) (
 	if err != nil {
 		return getBlockByNumberResponse{}, err
 	}
-	//response, err := req.Post(reqBody)
 	if err != nil {
 		return getBlockByNumberResponse{}, err
 	}
@@ -217,12 +210,6 @@ func prepareBodyForGetLatestBlockNumber() ([]byte, error) {
 	}
 
 	return byteReq, nil
-
-	//return map[string]interface{}{
-	//	"jsonrpc": "2.0",
-	//	"method":  "eth_blockNumber",
-	//	"id":      0,
-	//}
 }
 
 func prepareBodyForGetBlockByNumber(blockNumberHex string) ([]byte, error) {
@@ -242,14 +229,4 @@ func prepareBodyForGetBlockByNumber(blockNumberHex string) ([]byte, error) {
 	}
 
 	return byteReq, nil
-	//return map[string]interface{}{
-	//	"jsonrpc": "2.0",
-	//	"method":  "eth_getBlockByNumber",
-	//	"params": []interface{}{
-	//		blockNumberHex,
-	//		true,
-	//	},
-	//	"id": 0,
-	//}
-
 }

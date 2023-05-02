@@ -42,6 +42,10 @@ The monitoring transaction system is designed to continuously check the Ethereum
 3. If a transaction related to the address is found, the program will store transaction data in the database.
 4. The program repeats steps 1-3 indefinitely, allowing it to monitor the blockchain for new transactions in real-time.
 
+![alt text](https://github.com/corerid/monitoring-transaction-eth/blob/main/demo/monitoring-log.png)
+
+![alt text](https://github.com/corerid/monitoring-transaction-eth/blob/main/demo/db.png)
+
 ## Transaction retrieval API
 #### API design approch
 To retrieve transaction data from the database, I have implemented a ***pagination technique*** that allows users to request the data in smaller chunks. This approach is necessary due to the large volume of transaction data stored in the database, which could cause performance issues if retrieved all at once.
@@ -109,3 +113,5 @@ example response data
 > ```javascript
 >  curl --request GET 'http://localhost:8080/transaction?address=0x28c6c06298d514db089934071355e5743bf21d60&start_block=17174652&end_block=17174660&cursor_id=2&limit=1'
 > ```
+
+![alt text](https://github.com/corerid/monitoring-transaction-eth/blob/main/demo/API.png)

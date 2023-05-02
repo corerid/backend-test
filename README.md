@@ -3,7 +3,19 @@ Golang system that monitors incoming and outgoing transactions of specified Ethe
 
 ## How to run program
 **Option #1: Run on your local**
-1. edit .env file
+1. edit .env file to set config application
+
+> | key     | description                      |
+> |---------------|-----------------------------------|
+> | `MONITORED_ADDRESS`         | `specific address to be monitored`        |
+> | `JSONRPC_SERVER`         | `JSON RPC server for API`        |
+> | `DB_HOST`         | `Database host`        |
+> | `DB_DRIVER`         | `Database driver`        |
+> | `DB_USER`         | `Database username`        |
+> | `DB_PASSWORD`         | `Database password`        |
+> | `DB_NAME`         | `Database name`        |
+> | `DB_PORT`         | `Database port`        |
+
 example
 ```bash
 MONITORED_ADDRESS=0x28c6c06298d514db089934071355e5743bf21d60
@@ -26,11 +38,23 @@ DB_PORT=5432
 ```bash
   go run main.go
 ```
+> Note: API server start with port `8080`
 
 **Option #2: Run on docker**
 ```bash
   docker-compose build
   docker-compose up
+```
+> Note: If you are running the application using Docker, there is no need to edit the `.env` file in the database section. The server will automatically start on port `8000` when the application is launched.
+---
+## How to run test
+1. generate mock
+```bash
+  go generate ./...
+```
+2. run test
+```bash
+  go test ./...
 ```
 ---
     

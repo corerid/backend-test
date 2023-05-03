@@ -66,6 +66,12 @@ The monitoring transaction system is designed to continuously check the Ethereum
 3. If a transaction related to the address is found, the program will store transaction data in the database.
 4. The program repeats steps 1-3 indefinitely, allowing it to monitor the blockchain for new transactions in real-time.
 
+#### Sequence Diagram
+
+![alt text](https://github.com/corerid/monitoring-transaction-eth/blob/main/demo/seq-diagram.png)
+
+#### Running example
+
 ![alt text](https://github.com/corerid/monitoring-transaction-eth/blob/main/demo/monitoring-log.png)
 
 ![alt text](https://github.com/corerid/monitoring-transaction-eth/blob/main/demo/db.png)
